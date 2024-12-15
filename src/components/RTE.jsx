@@ -1,9 +1,10 @@
-import React from 'react'
+import React ,{useRef} from 'react'
 import {Editor} from '@tinymce/tinymce-react'
 import { Controller } from 'react-hook-form'
 
 
 export default function RTE({name,control,label,defaultValue=''}){
+  const editorRef = useRef(null);
   return (
     <div className='w-full'>
         {label && <label className='iniline-block mb-1 pl-1'>{label}</label>}
@@ -11,8 +12,10 @@ export default function RTE({name,control,label,defaultValue=''}){
         name={name || 'content'}
         control={control}
         render={({field : {onChange}})=>(
-    <Editor
-    apiKey="mavseac9o56qfytg80him7nnwxgxpe2mfmerhkxt5dfvsnuz"
+    <Editor 
+     tinymceScriptSrc="https://cdn.tiny.cloud/1/no-api-key/tinymce/7/tinymce.min.js"
+     onInit={(_evt, editor) => editorRef.current = editor}
+    // apiKey="hnneza8l85oo9ah5l4l5ve5jv9erbxqt3ardra2oxv45zzn2"
     initialValue = {defaultValue}
     init={{
         initialValue:defaultValue,
