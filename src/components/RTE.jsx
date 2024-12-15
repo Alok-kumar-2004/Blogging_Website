@@ -14,7 +14,9 @@ export default function RTE({name,control,label,defaultValue=''}){
         render={({field : {onChange}})=>(
     <Editor 
      tinymceScriptSrc="https://cdn.tiny.cloud/1/hnneza8l85oo9ah5l4l5ve5jv9erbxqt3ardra2oxv45zzn2/tinymce/7/tinymce.min.js"
-     onInit={(_evt, editor) => editorRef.current = editor}
+     onInit={(_evt, editor) => {
+      editorRef.current = editor
+    }}
     // apiKey="hnneza8l85oo9ah5l4l5ve5jv9erbxqt3ardra2oxv45zzn2"
     initialValue = {defaultValue}
     init={{
@@ -45,7 +47,8 @@ export default function RTE({name,control,label,defaultValue=''}){
           ],
         toolbar:
          "undo redo | blocks | image | bold italic forecolor | alignleft aligncenter bold italic forecolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent |removeformat | help",
-        content_style: "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }"
+        content_style: "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
+        readonly: false,
      }
     }
     onEditorChange={ onChange}
